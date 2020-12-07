@@ -33,7 +33,7 @@ class _FutureWidgetState extends State<FutureWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SingleChildScrollView(
       child: Container(
         child: FutureBuilder(
             future: data,
@@ -45,15 +45,12 @@ class _FutureWidgetState extends State<FutureWidget> {
                   child: Column(
                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: 5.0, bottom: 15.0),
-                        child: Text(
-                          'GHANA\'S COVID-19 DATA',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Teko',
-                            letterSpacing: 2,
-                          ),
+                      Text(
+                        'GHANA\'S COVID-19 DATA',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontFamily: 'Teko',
+                          letterSpacing: 2,
                         ),
                       ),
                       Divider(
@@ -66,6 +63,11 @@ class _FutureWidgetState extends State<FutureWidget> {
                               snapshot: snapshot,
                               textInfo: snapshot.data.ghana.confirmed,
                               title: 'Confirmed Cases',
+                              icon: Icon(
+                                Icons.countertops,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -73,6 +75,11 @@ class _FutureWidgetState extends State<FutureWidget> {
                               snapshot: snapshot,
                               textInfo: snapshot.data.ghana.recovered,
                               title: 'Recovered Cases',
+                              icon: Icon(
+                                Icons.countertops,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
@@ -94,6 +101,11 @@ class _FutureWidgetState extends State<FutureWidget> {
                               snapshot: snapshot,
                               textInfo: snapshot.data.ghana.deaths,
                               title: 'Death',
+                              icon: Icon(
+                                Icons.countertops,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           Expanded(
@@ -101,6 +113,11 @@ class _FutureWidgetState extends State<FutureWidget> {
                               snapshot: snapshot,
                               textInfo: snapshot.data.ghana.time,
                               title: '${snapshot.data.ghana.date}',
+                              icon: Icon(
+                                Icons.countertops,
+                                size: 30.0,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
@@ -124,7 +141,8 @@ class _FutureWidgetState extends State<FutureWidget> {
     );
   }
 
-  Widget CardItems({AsyncSnapshot snapshot, String title, String textInfo}) {
+  Widget CardItems(
+      {AsyncSnapshot snapshot, String title, String textInfo, Icon icon}) {
     return SizedBox(
       height: 210,
       child: Card(
@@ -143,11 +161,7 @@ class _FutureWidgetState extends State<FutureWidget> {
             Padding(
               padding: EdgeInsets.only(top: 10),
             ),
-            Icon(
-              Icons.countertops,
-              size: 30.0,
-              color: Colors.white,
-            ),
+            icon,
           ],
         ),
       ),
